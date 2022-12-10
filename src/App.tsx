@@ -1,24 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button } from '@mui/material';
+import { useQueries } from './contexts/useQueries';
+import { QueryCard } from './components/QueryCard';
 
 function App() {
+  const {queries, addQuery, updateQuery} = useQueries()
+
+  console.log(queries)
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Button variant="contained" onClick={() => addQuery()}>Add</Button>
       </header>
+
+      <div className="app-body">
+        {queries.map(q => <QueryCard query={q} />)}
+      </div>
     </div>
   );
 }
