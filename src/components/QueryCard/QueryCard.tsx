@@ -22,7 +22,16 @@ export const QueryCard = ({ query, defaultExpanded }: QueryCardProps) => {
   }
 
   return (
-    <Accordion className="query-card" defaultExpanded={defaultExpanded}>
+    <Accordion 
+      className="query-card" 
+      defaultExpanded={defaultExpanded}
+      expanded={query.expanded}
+      onChange={(e, expanded) => {
+        const newQuery = { ...query }
+        newQuery.expanded = expanded
+        updateQuery(newQuery)
+      }}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -49,7 +58,7 @@ export const QueryCard = ({ query, defaultExpanded }: QueryCardProps) => {
           label="Negative Prompt"
           fullWidth
           multiline
-          value={query.prompt}
+          value={query.negativePrompt}
           disabled={disabled}
           onChange={(e) => {
             const newQuery = { ...query }

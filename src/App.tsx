@@ -7,10 +7,7 @@ import { QueryCard } from './components/QueryCard';
 
 function App() {
   const {queries, addQuery, updateQuery} = useQueries()
-  const [startingQueryCount] = useState(queries.length)
 
-  console.log(queries)
-  
   return (
     <div className="App">
       <header className="App-header">
@@ -18,7 +15,7 @@ function App() {
       </header>
 
       <div className="app-body">
-        {queries.map((q, i) => <QueryCard query={q} defaultExpanded={i >= startingQueryCount} />)}
+        {queries.map((q, i) => <QueryCard query={q} />)}
       </div>
     </div>
   );

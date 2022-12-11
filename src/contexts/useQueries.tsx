@@ -1,4 +1,5 @@
-import React, { ReactNode, useContext, useState } from 'react'
+import React, { ReactNode, useContext } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 import { Query, QueryStatus } from '../types'
 
 type QueryContextType = {
@@ -14,7 +15,7 @@ const QueriesContext = React.createContext<QueryContextType>({
 })
 
 export const QueriesProvider = (props: {children: ReactNode}) => {
-  const [queries, setQueries] = useState<Query[]>([])
+  const [queries, setQueries] = useLocalStorage<Query[]>('queries', [])
 
   const addQuery = (query?: Partial<Query>) => {
     queries.push({
@@ -28,6 +29,7 @@ export const QueriesProvider = (props: {children: ReactNode}) => {
       restoreFaces: query?.restoreFaces === undefined ? true : query.restoreFaces,
       cfg: query?.cfg || 8,
       status: QueryStatus.NotStarted,
+      expanded: true,
     })
 
     setQueries([...queries])

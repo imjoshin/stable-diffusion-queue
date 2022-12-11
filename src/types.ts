@@ -16,4 +16,5 @@ export type Query = {
   restoreFaces: boolean,
   cfg: number,
   status: QueryStatus,
+  expanded: boolean,
 }
