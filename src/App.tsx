@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button } from '@mui/material';
@@ -7,6 +7,7 @@ import { QueryCard } from './components/QueryCard';
 
 function App() {
   const {queries, addQuery, updateQuery} = useQueries()
+  const [startingQueryCount] = useState(queries.length)
 
   console.log(queries)
   
@@ -17,7 +18,7 @@ function App() {
       </header>
 
       <div className="app-body">
-        {queries.map(q => <QueryCard query={q} />)}
+        {queries.map((q, i) => <QueryCard query={q} defaultExpanded={i >= startingQueryCount} />)}
       </div>
     </div>
   );

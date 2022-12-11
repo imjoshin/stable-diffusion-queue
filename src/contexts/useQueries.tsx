@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext, useState } from 'react'
-import { Query } from '../types'
+import { Query, QueryStatus } from '../types'
 
 type QueryContextType = {
   queries: Query[],
@@ -27,6 +27,7 @@ export const QueriesProvider = (props: {children: ReactNode}) => {
       height: query?.height || 512,
       restoreFaces: query?.restoreFaces === undefined ? true : query.restoreFaces,
       cfg: query?.cfg || 8,
+      status: QueryStatus.NotStarted,
     })
 
     setQueries([...queries])
